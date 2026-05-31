@@ -8,8 +8,14 @@ const Dashboard = () => {
   const colors = ["#9333ea", "#d97706", "#dc2626", "#0284c7", "#16a34a"]
 
   const [allResumes, setAllResumes] = useState([])
+
+
   const [showCreateResume, setShowCreateResumes] = useState(false)
+
+
   const [showUploadResume, setShowUploadResumes] = useState(false)
+
+  
   const [title, setTitle] = useState('')
   const [resume, setResume] = useState(null)
   const [editResumeId, setEditResumeId] = useState('')
