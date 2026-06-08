@@ -7,7 +7,7 @@ const generateToken = (userId) => {
     return token;
 }
 
-export const registerUser = async (req, rea) => {
+export const registerUser = async (req, res) => {
     try {
         const {name, email, password} = req.body;
 
@@ -38,7 +38,7 @@ export const registerUser = async (req, rea) => {
 
 
 
-export const loginUser = async (req, rea) => {
+export const loginUser = async (req, res) => {
     try {
         const {email, password} = req.body;
 
@@ -55,6 +55,26 @@ export const loginUser = async (req, rea) => {
         user.password = undefined;
 
         return res.status(200).json({message: 'Login successful', token, user})
+    } catch (error) {
+        return res.status(400).json({message: error.message})
+    }
+}
+
+
+
+
+export const getUserById = async (req, res) => {
+    try {
+        const userId = req.userId;
+
+        const user = await User.findById(userId)
+        if(!user){
+            return res.status(404).json({message: 'User not found'})
+        }
+
+        user.password = undefined;
+        return res.status(200).json({user})
+
     } catch (error) {
         return res.status(400).json({message: error.message})
     }
